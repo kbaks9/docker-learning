@@ -1,0 +1,21 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile-flask
+    image: coderco-f-challenge
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis           # <-- simple list works for v2 syntax
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
+  redis:
+    build:
+      context: .
+      dockerfile: Dockerfile-redis
+    image: coderco-r-challenge
+    ports:
+      - "6379:6379"
