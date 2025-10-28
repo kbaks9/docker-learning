@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  web:
+    build: .  # Build whatever is inside this directory
+    ports: 
+    - "5002:5002"
+    depends_on:
+    - redis
+    environment:
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    
+  redis:
+    # Building Redis Image
+    image: "redis:latest"
+    ports:
+    - "6379:6379"
+    volumes:
+    - redis-data:/data
+
+volumes:
+  redis-data:
