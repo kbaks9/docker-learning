@@ -1,48 +1,60 @@
-# Flask + Redis Web App
+# 🚀 Flask + Redis Web App (Final Version)
 
-This project is a simple **Flask** web application backed by **Redis** for visitor tracking.  
-It’s part of my ongoing learning series in Dockerized web application deployment.
+This project is a containerized **Flask + Redis** web application deployed with **Docker Compose**, now featuring **application scaling and load balancing** for improved performance and reliability.
 
 ---
 
 ## 🧱 Project Overview
 
-The app exposes two endpoints:
+The application includes:
 
+- 🐍 **Flask (Python)** — Handles the web logic and visitor counter.  
+- 🧠 **Redis** — Stores persistent visitor counts across containers.  
+- ⚖️ **Scaled Flask instances** — The app runs multiple Flask containers, with **load balancing handled automatically through Docker Compose**.
+
+### 🔗 Endpoints
 - **`/`** — Homepage with a link to the visitor count page.  
-- **`/count`** — Displays the number of visitors, tracked persistently via Redis.
+- **`/count`** — Displays the total number of visitors tracked by Redis.
 
 ---
 
-## 🆕 Updates Since the Previous (Deprecated) Version
+## 🔄 Updates & Improvements
 
-From the last iteration of this project, I’ve made the following improvements:
+Since the deprecated version, the project has evolved significantly:
 
-- ✅ **Added persistent storage** for Redis data to ensure counts are retained even after container restarts.  
-- ✅ **Introduced environment variables** for configurable parameters such as host, port, and Redis connection details.
+- 💾 Added **persistent storage** using Docker volumes for Redis data retention.  
+- ⚙️ Introduced **environment variables** for flexible configuration.  
+- ⚖️ **Scaled the Flask application** to run multiple instances and **load balance traffic** between them using Docker Compose.
 
 ---
 
-## 🚀 Next Steps (Final Phase)
+## 🏗️ Architecture Overview
 
-Tomorrow’s final iteration will include:
-
-- 🔹 **Nginx integration** for serving the Flask app as a reverse proxy.  
-- 🔹 **Load balancing setup** to handle multiple Flask containers efficiently.
+Client requests are distributed evenly across multiple **Flask containers**, each connected to the same **Redis** data store.  
+This ensures consistent visitor counts and improved availability when scaling horizontally.
 
 ---
 
 ## 🧩 Tech Stack
 
-- **Flask** (Python)
-- **Redis**
-- **Docker**
-- **Docker Compose**
-- *(Upcoming)* **Nginx**
+- 🐍 Flask (Python)  
+- 🧠 Redis  
+- 🐳 Docker  
+- 🧭 Docker Compose  
 
 ---
 
-## 🖥️ Run the Application
+## 💻 How to Run
 
 ```bash
-docker-compose up --build
+# 1. Build and start all containers
+docker compose up --build
+
+# 2. Access the app
+# Visit http://localhost
+# Endpoints:
+#   /     — Homepage
+#   /count — Visitor count page
+
+# 3. Optional: Scale Flask app to multiple instances
+docker compose up --scale web=3
