@@ -22,20 +22,38 @@ This project follows through with the **CoderCo challenge** and serves as an ini
 
 ---
 
+### ✅ Features Implemented / Learning Goals Completed
+- 💾 **Persistent Storage for Redis** — Visit counts persist using a Docker volume  
+- ⚙️ **Environment Variables** — Redis connection and Flask port configurable via `.env`  
+- 🚀 **Scaling the Application** — Multiple Flask instances running with load balancing via Docker Compose  
+- 🌐 **Optional Nginx Integration** — Future enhancement if needed
+
+---
+
 ### Features Implemented in flask_app2:
-- **Flask Web Application**
-  - `/` : Displays a homepage message.
+- 🐍 **Flask Web Application**
+  - `/` : Displays a homepage message.  
   - `/count` : Increments and displays a visit count stored in Redis.
-- **Redis Integration**
-  - Connected Flask app to Redis using Python `redis` library.
+- 🧠 **Redis Integration**
+  - Connected Flask app to Redis using Python `redis` library.  
   - Visit count is persisted in Redis using a Docker volume.
-- **Application Scaling**
-  - Multiple Flask instances run simultaneously.
+- ⚖️ **Application Scaling**
+  - Multiple Flask instances run simultaneously.  
   - Load balancing between instances handled via Docker Compose.
 
 ---
 
-### 🚧 Features To Be Added / Learning Goals
-- **Further Docker Optimization**
-  - Nginx integration (reverse proxy) if required.
-  - More advanced Docker Compose configurations.
+## 💻 How to Run
+
+```bash
+# 1. Build and start all containers
+docker compose up --build
+
+# 2. Access the app
+# Visit http://localhost
+# Endpoints:
+#   /     — Homepage
+#   /count — Visitor count page
+
+# 3. Optional: Scale Flask app to multiple instances
+docker compose up --scale web=3
